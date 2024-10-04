@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+</head>
+<body>
+<p>Online Music Player</p>
+<h1>The Best Music For You</h1>
+<label for="trackSelect">Choose your mood:</label>
+<select id="trackSelect">
+    <option value="devorah.mp3">Energetic</option>
+    <option value="getlucky.mp3">Happy</option>
+    <option value="moby.mp3">Sad</option>
+    <option value="reflect.mp3">Peaceful</option>
+    <option value="sweetdreams.mp3">Nostalgic</option>
+</select>
+<br><br>
+<audio id="audioPlayer" controls>
+    <source id="audioSource" src="devorah.mp3" type="audio/mp3">
+</audio>
+<br><br>
+<button id="playButton">Play</button>
+<button id="pauseButton">Pause</button>
+<button id="stopButton">Stop</button>
+<br><br>
+<div id="trackInfo">
+    Now playing: <span id="currentTrack">Energetic</span>
+</div>
+<script>
+    const audioPlayer = document.getElementById('audioPlayer');
+    const audioSource = document.getElementById('audioSource');
+    const trackSelect = document.getElementById('trackSelect');
+    const playButton = document.getElementById('playButton');
+    const pauseButton = document.getElementById('pauseButton');
+    const stopButton = document.getElementById('stopButton');
+    const currentTrack = document.getElementById('currentTrack');
+
+    let isPlaying = false;
+    let isPaused = false;
+
+    trackSelect.addEventListener('change', () => {
+        audioSource.src = trackSelect.value;
+        audioPlayer.load();
+        currentTrack.textContent = trackSelect.options[trackSelect.selectedIndex].text;  // Обновляем отображаемое название трека
+        isPlaying = false;
+        isPaused = false;
+    });
+
+    playButton.addEventListener('click', () => {
+        if (!isPlaying) {
+            audioPlayer.play();
+            isPlaying = true;
+            isPaused = false;
+        }
+    });
+
+    pauseButton.addEventListener('click', () => {
+        if (isPlaying && !isPaused) {
+            audioPlayer.pause();
+            isPaused = true;
+            isPlaying = false;
+        }
+    });
+
+    stopButton.addEventListener('click', () => {
+        if (isPlaying || isPaused) {
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+            isPlaying = false;
+            isPaused = false;
+        }
+    });
+</script>
+</body>
+</html>
