@@ -18,4 +18,4 @@ The Online Media Player is a simple web application for playing audio files onli
 - To change volume click Volume Button
 - To change music speed click on the icon with three dots
 
-- git clone https://olgaorl.github.io/Meedia/
+- git clone https://github.com/olgaorl/Meedia.git
